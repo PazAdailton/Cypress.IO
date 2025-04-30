@@ -1,17 +1,36 @@
         /// <references types="cypress"/>
 
 describe('Acesso a Página', () => {
-    it('Testes de acesso', () => {
+    it.only('Testes de acesso', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
 
-        cy.pause();
+        //cy.pause();
 
         cy.title().should('be.equal', 'Campo de Treinamento')
-        cy.title().should('contain', 'Campo').debug();
+        cy.title().should('contain', 'Campo') //.debug();
         
         cy.title()
         .should('be.equal', 'Campo de Treinamento')
         .and('contain', 'Campo');
+
+        let syncTitle;
+
+        cy.title().then(title =>{
+            console.log(title)
+
+            cy.get('#formNome').type(title)
+
+            syncTitle = title;
+        })
+        cy.get('[data-cy="dataSobrenome"]').then($el =>{
+            $el.val(syncTitle)
+        })
+                        //quando tem ":" colocar duas \\ antes
+        cy.get('#elementosForm\\:sugestoes').then($el =>{
+            cy.wrap($el).type(syncTitle)
+        })
+
+
     })
 
     it('Should find and interact with an element', () => {
