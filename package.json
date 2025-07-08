@@ -15,7 +15,9 @@
     "dayjs": "^1.11.13"
   },
   "devDependencies": {
-    "chai": "^5.2.0",
-    "mocha": "^11.1.0"
+    "chai": "^4.3.7",
+    "mocha": "^11.1.0",
+    "sinon": "^21.0.0",
+    "sinon-chai": "^4.0.0"
   }
 }
